@@ -91,7 +91,7 @@ export const RafikiProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     const path = locationState.pathname;
-    let pageTitle = 'Rafiki Airbnbs | Feel at Home in Kenya';
+    let pageTitle = 'Rafiki Airbnbs | Where Every Stay Feels Like Home';
     let pageDescription = 'Discover beautifully curated short-stay homes in Kenya with Rafiki Airbnbs.';
 
     if (path === '/stays') {

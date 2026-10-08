@@ -1,6 +1,6 @@
 # Rafiki Airbnbs — Full-Stack Short-Stay Booking Platform
 
-> **"Feel at home in Kenya"**  
+> **"Where Every Stay Feels Like Home."**
 > Boutique Kenyan hospitality platform featuring carefully selected short-stay homes in Nairobi (Kilimani, Kileleshwa, Westlands) with WhatsApp guest concierge, reservation management, and admin dashboard.
 
 ---
@@ -72,6 +72,7 @@ Sign in at `http://localhost:3000/admin/login` using that user's Supabase Auth c
 2. In the Supabase SQL Editor, run these files in order:
    - `supabase/migrations/001_initial_schema.sql`
    - `supabase/migrations/002_supabase_access.sql`
+   - `supabase/migrations/003_company_tagline.sql`
    - `supabase/seed.sql` (initial properties, images, reviews, and settings)
 3. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env` as shown above.
 4. Restart the Vite server after changing `.env`.

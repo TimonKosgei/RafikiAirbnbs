@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               personal Kenyan hospitality.
             </p>
             <p className="font-serif italic text-lg text-[#B89758]">
-              {settings.company_tagline || 'Feel at home in Kenya.'}
+              {settings.company_tagline || 'Where Every Stay Feels Like Home.'}
             </p>
           </div>
 

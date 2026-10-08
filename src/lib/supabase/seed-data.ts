@@ -20,7 +20,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   phone_number: (import.meta as unknown as { env: Record<string, string> }).env?.VITE_RAFIKI_PHONE || '+254 712 345 678',
   support_email: 'karibu@rafikiliving.com',
   office_address: 'Argwings Kodhek Road, Kilimani, Nairobi, Kenya',
-  company_tagline: 'Feel at home in Kenya.',
+  company_tagline: 'Where Every Stay Feels Like Home.',
 };
 
 // Curated SVG / High-resolution architectural visuals for each property
