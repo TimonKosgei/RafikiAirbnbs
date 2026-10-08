@@ -37,11 +37,12 @@ async function postEmailApi(endpoint: string, body: DatabaseRow): Promise<void> 
 }
 
 function mapProperty(row: DatabaseRow): Property {
-  const images = [...((row.property_images || []) as PropertyImage[])].sort(
+  const { property_images: propertyImages = [], ...propertyFields } = row;
+  const images = [...(propertyImages as PropertyImage[])].sort(
     (a, b) => a.display_order - b.display_order
   );
   return {
-    ...row,
+    ...propertyFields,
     neighborhood_overview: row.neighborhood_overview || '',
     amenities: row.amenities || [],
     images,
@@ -156,6 +157,7 @@ function propertyPayload(body: DatabaseRow): DatabaseRow {
   const {
     id: _id,
     images: _images,
+    property_images: _propertyImages,
     rating: _rating,
     review_count: _reviewCount,
     created_at: _createdAt,
