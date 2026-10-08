@@ -1,0 +1,8 @@
+{
+  "name": "Rafiki Living",
+  "description": "A premium, boutique hospitality platform for curated short-stay homes in Kenya. Feel at home in East Africa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
