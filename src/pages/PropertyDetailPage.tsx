@@ -108,7 +108,7 @@ export const PropertyDetailPage: React.FC<{ slug: string }> = ({ slug }) => {
           >
             <span>Explore our stays</span>
           </a>
-          <WhatsAppButton label="Chat with Rafiki Airbnbs" variant="outline" />
+          <WhatsAppButton label="Chat with MIS Stays" variant="outline" />
         </div>
       </div>
     );

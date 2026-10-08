@@ -52,7 +52,7 @@ export const AdminLoginPage: React.FC = () => {
 
         <div className="space-y-2">
           <p className="text-xs font-semibold text-[#2C4C3E]">
-            Rafiki Airbnbs · Hospitality Management
+            MIS Stays · Hospitality Management
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1A1D1B]">
             Admin Sign In

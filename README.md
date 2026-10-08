@@ -1,4 +1,4 @@
-# Rafiki Airbnbs — Full-Stack Short-Stay Booking Platform
+# MIS Stays — Full-Stack Short-Stay Booking Platform
 
 > **"Where Every Stay Feels Like Home."**
 > Boutique Kenyan hospitality platform featuring carefully selected short-stay homes in Nairobi (Kilimani, Kileleshwa, Westlands) with WhatsApp guest concierge, reservation management, and admin dashboard.
@@ -51,7 +51,7 @@ Admin access uses Supabase Auth. Create an Auth user in the Supabase dashboard, 
 
 ```sql
 INSERT INTO public.profiles (id, email, full_name, role)
-VALUES ('AUTH-USER-UUID', 'admin@example.com', 'Rafiki Airbnbs Admin', 'admin');
+VALUES ('AUTH-USER-UUID', 'admin@example.com', 'MIS Stays Admin', 'admin');
 ```
 
 Sign in at `http://localhost:3000/admin/login` using that user's Supabase Auth credentials. The frontend checks the profile role, and row-level security limits admin database operations to `admin` and `manager` profiles.

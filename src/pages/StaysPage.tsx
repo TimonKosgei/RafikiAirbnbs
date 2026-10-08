@@ -111,7 +111,7 @@ export const StaysPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-10">
       <div className="space-y-3 max-w-2xl">
         <p className="text-xs font-medium text-[#2C4C3E]">
-          Rafiki Airbnbs Collection · Nairobi, Kenya
+          MIS Stays Collection · Nairobi, Kenya
         </p>
         <h1 className="font-serif text-4xl sm:text-5xl font-semibold text-[#1A1D1B] tracking-tight">
           Our Curated Stays

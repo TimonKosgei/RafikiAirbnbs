@@ -32,7 +32,7 @@ export function validateBookingDates(checkIn: string, checkOut: string): DateVal
   if (nights > 180) {
     return {
       valid: false,
-      error: 'For stays longer than 180 nights, please contact Rafiki Airbnbs directly via WhatsApp.',
+      error: 'For stays longer than 180 nights, please contact MIS Stays directly via WhatsApp.',
       nights: 0,
     };
   }

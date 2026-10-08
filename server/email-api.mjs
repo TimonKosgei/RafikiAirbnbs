@@ -110,7 +110,7 @@ async function getCompanyTagline() {
 }
 
 function emailShell(content, tagline) {
-  return `<!doctype html><html><body style="margin:0;padding:0;background:#f4f2ed;font-family:Arial,Helvetica,sans-serif;color:#1a1d1b"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f2ed;padding:28px 12px"><tr><td align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:620px;background:#ffffff;border-radius:16px;overflow:hidden"><tr><td style="background:#244537;padding:24px 30px;color:#ffffff"><div style="font-family:Georgia,serif;font-size:25px;font-weight:bold;letter-spacing:.2px">Rafiki Airbnbs</div><div style="margin-top:6px;color:#e3d3ad;font-size:13px">${escapeHtml(tagline)}</div></td></tr><tr><td style="padding:28px 30px">${content}</td></tr><tr><td style="border-top:1px solid #e8e6df;padding:18px 30px;color:#696d68;font-size:12px;line-height:1.6">Rafiki Airbnbs · Nairobi, Kenya<br><span style="color:#85877f">${escapeHtml(tagline)}</span></td></tr></table></td></tr></table></body></html>`;
+  return `<!doctype html><html><body style="margin:0;padding:0;background:#f4f2ed;font-family:Arial,Helvetica,sans-serif;color:#1a1d1b"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f2ed;padding:28px 12px"><tr><td align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:620px;background:#ffffff;border-radius:16px;overflow:hidden"><tr><td style="background:#244537;padding:24px 30px;color:#ffffff"><div style="font-family:Georgia,serif;font-size:25px;font-weight:bold;letter-spacing:.2px">MIS Stays</div><div style="margin-top:6px;color:#e3d3ad;font-size:13px">${escapeHtml(tagline)}</div></td></tr><tr><td style="padding:28px 30px">${content}</td></tr><tr><td style="border-top:1px solid #e8e6df;padding:18px 30px;color:#696d68;font-size:12px;line-height:1.6">MIS Stays · Nairobi, Kenya<br><span style="color:#85877f">${escapeHtml(tagline)}</span></td></tr></table></td></tr></table></body></html>`;
 }
 
 function bookingEmail(booking, property, guest, tagline, isAdminCopy = false) {
@@ -124,7 +124,7 @@ function bookingEmail(booking, property, guest, tagline, isAdminCopy = false) {
   const amount = `KES ${Number(booking.estimated_total).toLocaleString('en-KE')}`;
   const greeting = isAdminCopy
     ? `<p style="margin:0 0 20px;color:#555b56;font-size:14px;line-height:1.6">A new booking request has been submitted. Guest and stay details are below.</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 20px;background:#f7f6f2;border-radius:10px"><tr><td style="padding:16px 18px;font-size:14px;line-height:1.8"><strong>${name}</strong><br><a href="mailto:${escapeHtml(guest.email)}" style="color:#244537">${escapeHtml(guest.email)}</a><br>${escapeHtml(guest.phone)}</td></tr></table>`
-    : `<p style="margin:0 0 20px;color:#555b56;font-size:14px;line-height:1.7">Hello ${name},<br>Thank you for choosing Rafiki Airbnbs. We’ve received your booking request, and our team will contact you to confirm the details of your stay.</p>`;
+    : `<p style="margin:0 0 20px;color:#555b56;font-size:14px;line-height:1.7">Hello ${name},<br>Thank you for choosing MIS Stays. We’ve received your booking request, and our team will contact you to confirm the details of your stay.</p>`;
   const reference = `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 22px;background:#f5f2e9;border:1px solid #ebe4d3;border-radius:10px"><tr><td style="padding:14px 18px"><div style="color:#696d68;font-size:11px;text-transform:uppercase;letter-spacing:1px">Booking reference</div><div style="margin-top:4px;color:#244537;font-size:20px;font-weight:bold;letter-spacing:1px">${ref}</div></td><td align="right" style="padding:14px 18px"><span style="display:inline-block;background:#e8f0eb;color:#244537;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:bold;text-transform:uppercase">${status}</span></td></tr></table>`;
   const detailRows = [
     ['Stay', `${propertyName}${location ? `<br><span style="color:#777b75;font-size:12px">${location}</span>` : ''}`],
@@ -145,14 +145,14 @@ function bookingEmail(booking, property, guest, tagline, isAdminCopy = false) {
   const subject = safeHeader(
     isAdminCopy
       ? `New booking request ${booking.reference_number} - ${property.name}`
-      : `Your Rafiki Airbnbs booking request ${booking.reference_number}`
+      : `Your MIS Stays booking request ${booking.reference_number}`
   );
   const text = [
     isAdminCopy ? `NEW BOOKING REQUEST — ${property.name}` : `Hello ${guest.full_name},`,
     '',
     isAdminCopy
       ? `Guest: ${guest.full_name}\nEmail: ${guest.email}\nPhone: ${guest.phone}`
-      : 'Thank you for choosing Rafiki Airbnbs. We have received your booking request.',
+      : 'Thank you for choosing MIS Stays. We have received your booking request.',
     '',
     'BOOKING DETAILS',
     '----------------',
@@ -166,7 +166,7 @@ function bookingEmail(booking, property, guest, tagline, isAdminCopy = false) {
     booking.special_requests ? `Special requests: ${booking.special_requests}` : '',
     '',
     tagline,
-    'Rafiki Airbnbs · Nairobi, Kenya',
+    'MIS Stays · Nairobi, Kenya',
   ]
     .filter(Boolean)
     .join('\n');
@@ -208,10 +208,10 @@ function recoveryEmail(bookings, tagline) {
     ]),
     '',
     tagline,
-    'Rafiki Airbnbs · Nairobi, Kenya',
+    'MIS Stays · Nairobi, Kenya',
   ].join('\n');
   return {
-    subject: 'Your Rafiki Airbnbs booking details',
+    subject: 'Your MIS Stays booking details',
     text,
     html: emailShell(
       `<h1 style="margin:0 0 12px;color:#1a1d1b;font-family:Georgia,serif;font-size:27px;font-weight:normal">Your booking details</h1><p style="margin:0;color:#555b56;font-size:14px;line-height:1.7">Hello ${name}, here are the bookings associated with your email address.</p>${sections}`,
@@ -257,12 +257,12 @@ async function sendBookingEmails(record) {
   ]);
   const results = await Promise.allSettled([
     mailer.sendMail({
-      from: { name: 'Rafiki Airbnbs', address: smtpUser },
+      from: { name: 'MIS Stays', address: smtpUser },
       to: guest.email,
       ...bookingEmail(booking, property, guest, tagline),
     }),
     mailer.sendMail({
-      from: { name: 'Rafiki Airbnbs Bookings', address: smtpUser },
+      from: { name: 'MIS Stays Bookings', address: smtpUser },
       to: smtpUser,
       bcc: adminRecipients.filter(
         (recipient) => recipient !== smtpUser.trim().toLowerCase()
@@ -339,7 +339,7 @@ async function sendEmailLookup(request, response) {
   if (bookings.length) {
     const tagline = await getCompanyTagline();
     await mailer.sendMail({
-      from: { name: 'Rafiki Airbnbs', address: smtpUser },
+      from: { name: 'MIS Stays', address: smtpUser },
       to: email,
       ...recoveryEmail(bookings, tagline),
     });
@@ -367,7 +367,7 @@ export async function handleEmailApiRequest(request, response, route) {
   } catch (error) {
     console.error('Booking email service error:', error instanceof Error ? error.message : error);
     return json(response, 500, {
-      error: 'The email service could not complete this request. Please contact Rafiki Airbnbs.',
+      error: 'The email service could not complete this request. Please contact MIS Stays.',
     });
   }
 }

@@ -91,29 +91,29 @@ export const RafikiProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     const path = locationState.pathname;
-    let pageTitle = 'Rafiki Airbnbs | Where Every Stay Feels Like Home';
-    let pageDescription = 'Discover beautifully curated short-stay homes in Kenya with Rafiki Airbnbs.';
+    let pageTitle = 'MIS Stays | Where Every Stay Feels Like Home';
+    let pageDescription = 'Discover beautifully curated short-stay homes in Kenya with MIS Stays.';
 
     if (path === '/stays') {
-      pageTitle = 'Curated Stays in Nairobi | Rafiki Airbnbs';
+      pageTitle = 'Curated Stays in Nairobi | MIS Stays';
       pageDescription = 'Browse handpicked short-stay apartments and garden residences in Kilimani, Kileleshwa, and Westlands, Nairobi.';
     } else if (path.startsWith('/stays/')) {
       const slug = path.replace('/stays/', '').split('/')[0];
       const prop = properties.find((p) => p.slug === slug);
       if (prop) {
-        pageTitle = `${prop.name} | Rafiki Airbnbs`;
-        pageDescription = `${prop.name} in ${prop.location}, ${prop.city}. Book directly with Rafiki Airbnbs.`;
+        pageTitle = `${prop.name} | MIS Stays`;
+        pageDescription = `${prop.name} in ${prop.location}, ${prop.city}. Book directly with MIS Stays.`;
       }
     } else if (path === '/destinations') {
-      pageTitle = 'Destinations in Kenya | Rafiki Airbnbs';
+      pageTitle = 'Destinations in Kenya | MIS Stays';
     } else if (path === '/about') {
-      pageTitle = 'Our Story & Hospitality | Rafiki Airbnbs';
+      pageTitle = 'Our Story & Hospitality | MIS Stays';
     } else if (path === '/contact') {
-      pageTitle = 'Contact Us on WhatsApp or Phone | Rafiki Airbnbs';
+      pageTitle = 'Contact Us on WhatsApp or Phone | MIS Stays';
     } else if (path.startsWith('/booking/')) {
-      pageTitle = 'Booking Request Status | Rafiki Airbnbs';
+      pageTitle = 'Booking Request Status | MIS Stays';
     } else if (path.startsWith('/admin')) {
-      pageTitle = 'Admin Hospitality Console | Rafiki Airbnbs';
+      pageTitle = 'Admin Hospitality Console | MIS Stays';
     }
 
     document.title = pageTitle;

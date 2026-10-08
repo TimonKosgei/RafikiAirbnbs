@@ -48,7 +48,7 @@ export const HomePage: React.FC = () => {
               <ResilientImage
                 src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85"
                 alt="Sunlit luxury living room at Rafiki Heights in Kilimani, Nairobi"
-                fallbackLabel="Rafiki Airbnbs · Kenya"
+                fallbackLabel="MIS Stays · Kenya"
                 priority
                 className="w-full h-full object-cover"
               />
@@ -144,7 +144,7 @@ export const HomePage: React.FC = () => {
                 Nairobi’s most welcoming neighborhoods
               </h2>
               <p className="text-base text-[#5C5F58]">
-                Every home in the Rafiki Airbnbs collection is chosen for walkable greenery, 24-hour security, and
+                Every home in the MIS Stays collection is chosen for walkable greenery, 24-hour security, and
                 proximity to Nairobi’s dining, diplomatic, and safari links.
               </p>
             </div>
@@ -218,7 +218,7 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-3">
               <p className="text-xs font-medium text-[#2C4C3E]">
-                Why Guests Choose Rafiki Airbnbs
+                Why Guests Choose MIS Stays
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1A1D1B] tracking-tight">
                 Personal Kenyan hospitality, not an anonymous lockbox.

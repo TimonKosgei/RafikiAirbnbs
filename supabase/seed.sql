@@ -82,7 +82,7 @@ INSERT INTO public.reviews (
     uuid_generate_v5(uuid_ns_url(), 'rafiki-haven-review-2'),
     uuid_generate_v5(uuid_ns_url(), 'rafiki-haven'),
     'Amara Okafor', 'Lagos & London · 5-night stay', 5,
-    'Thoughtful hospitality from start to finish. Rafiki Airbnbs checked in via WhatsApp and arranged a late check-out before our evening flight.',
+    'Thoughtful hospitality from start to finish. MIS Stays checked in via WhatsApp and arranged a late check-out before our evening flight.',
     'September 2026', true
   ),
   (

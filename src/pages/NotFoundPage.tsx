@@ -27,7 +27,7 @@ export const NotFoundPage: React.FC = () => {
           <span>Explore our stays</span>
           <ArrowRight className="w-4 h-4" />
         </a>
-        <WhatsAppButton label="Chat with Rafiki Airbnbs" variant="outline" />
+        <WhatsAppButton label="Chat with MIS Stays" variant="outline" />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export const DestinationsPage: React.FC = () => {
     const propsInLocation = properties.filter((p) => p.location === locationName);
     const meta = KENYA_DESTINATIONS_META[locationName] || {
       city: propsInLocation[0]?.city || 'Nairobi',
-      description: `Curated stays from Rafiki Airbnbs in ${locationName}, ${propsInLocation[0]?.city || 'Kenya'}.`,
+      description: `Curated stays from MIS Stays in ${locationName}, ${propsInLocation[0]?.city || 'Kenya'}.`,
       highlights: ['Verified security', 'Personal WhatsApp concierge'],
       defaultImage: '',
     };

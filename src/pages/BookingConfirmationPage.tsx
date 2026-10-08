@@ -130,7 +130,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
     confirmed: {
       title: 'Booking Confirmed',
       subtitle:
-        'Your stay with Rafiki Airbnbs is confirmed and your dates are reserved exclusively for you.',
+        'Your stay with MIS Stays is confirmed and your dates are reserved exclusively for you.',
       tone: 'text-[#15803D]',
       Icon: CheckCircle2,
     },
@@ -143,7 +143,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
     },
     completed: {
       title: 'Stay Completed',
-      subtitle: 'Thank you for staying with Rafiki Airbnbs. Karibu tena!',
+      subtitle: 'Thank you for staying with MIS Stays. Karibu tena!',
       tone: 'text-[#2C4C3E]',
       Icon: CheckCircle2,
     },
@@ -183,7 +183,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
           </p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <WhatsAppButton label="Chat on WhatsApp" variant="primary" />
-            <PhoneCallButton label="Call Rafiki Airbnbs" variant="outline" />
+            <PhoneCallButton label="Call MIS Stays" variant="outline" />
           </div>
         </div>
       ) : (
@@ -191,7 +191,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
           {searchParams.get('emailNotificationFailed') === '1' && (
             <div className="m-6 sm:m-8 mb-0 rounded-lg border border-[#B45309]/30 bg-[#FFFBEB] p-4 text-sm text-[#92400E]">
               Your booking was saved, but we could not send the confirmation emails. Save the
-              reference shown below and contact Rafiki Airbnbs if you need help.
+              reference shown below and contact MIS Stays if you need help.
             </div>
           )}
           <div className="bg-[#F2EFE9] border-b border-[#1A1D1B]/10 p-6 sm:p-8 space-y-3">
@@ -272,7 +272,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
                   )}
                 />
                 <PhoneCallButton
-                  label="Call Rafiki Airbnbs"
+                  label="Call MIS Stays"
                   showNumber
                   variant="outline"
                   size="lg"

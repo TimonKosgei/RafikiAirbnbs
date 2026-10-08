@@ -20,7 +20,7 @@ interface WhatsAppButtonProps {
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   message,
   phoneOverride,
-  label = 'Chat with Rafiki Airbnbs',
+  label = 'Chat with MIS Stays',
   variant = 'primary',
   className = '',
   size = 'md',
@@ -71,7 +71,7 @@ interface PhoneCallButtonProps {
 
 export const PhoneCallButton: React.FC<PhoneCallButtonProps> = ({
   phoneOverride,
-  label = 'Call Rafiki Airbnbs',
+  label = 'Call MIS Stays',
   showNumber = false,
   variant = 'outline',
   className = '',
@@ -118,7 +118,7 @@ export const FloatingMobileWhatsApp: React.FC = () => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with Rafiki Airbnbs on WhatsApp"
+        aria-label="Chat with MIS Stays on WhatsApp"
         className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#2C4C3E] text-white text-xs font-medium shadow-md hover:bg-[#223B30] transition-transform duration-150 active:scale-95"
       >
         <MessageCircle className="w-4 h-4" />

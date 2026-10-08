@@ -19,7 +19,7 @@ export const ContactPage: React.FC = () => {
   const telHref = normalizeTelLink(settings.phone_number || settings.whatsapp_number);
 
   const composedWhatsAppText = [
-    `Hello Rafiki Airbnbs, my name is ${guestName || 'a prospective guest'}.`,
+    `Hello MIS Stays, my name is ${guestName || 'a prospective guest'}.`,
     selectedProperty !== 'General Inquiry'
       ? `I'm inquiring about ${selectedProperty}.`
       : `I would like to inquire about your short-stay residences in Nairobi.`,
@@ -66,7 +66,7 @@ export const ContactPage: React.FC = () => {
               International Format: +{settings.whatsapp_number}
             </p>
             <WhatsAppButton
-              label="Chat with Rafiki Airbnbs"
+              label="Chat with MIS Stays"
               variant="primary"
               size="md"
               className="w-full"
@@ -89,7 +89,7 @@ export const ContactPage: React.FC = () => {
               </a>
             </p>
             <PhoneCallButton
-              label="Call Rafiki Airbnbs"
+              label="Call MIS Stays"
               variant="outline"
               size="md"
               className="w-full"

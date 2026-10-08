@@ -31,7 +31,7 @@ export const ResilientImage: React.FC<ResilientImageProps> = ({
             <Home className="w-6 h-6 text-[#B89758] stroke-[1.5]" />
           </div>
           <span className="font-serif text-lg font-semibold tracking-wide text-white">
-            {fallbackLabel || alt || 'Rafiki Airbnbs Residence'}
+            {fallbackLabel || alt || 'MIS Stays Residence'}
           </span>
           <span className="text-xs text-[#D6D3CD] mt-0.5 tracking-wider uppercase font-medium">
             Nairobi · Kenya

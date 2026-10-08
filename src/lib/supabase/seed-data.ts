@@ -420,7 +420,7 @@ export const INITIAL_REVIEWS: Review[] = [
     guest_origin: 'Lagos & London · 5-night stay',
     rating: 5,
     comment:
-      'Thoughtful hospitality from start to finish. Instead of an impersonal lockbox experience, Rafiki Airbnbs checked in on us via WhatsApp and arranged a late check-out before our evening flight.',
+      'Thoughtful hospitality from start to finish. Instead of an impersonal lockbox experience, MIS Stays checked in on us via WhatsApp and arranged a late check-out before our evening flight.',
     stay_date: 'September 2026',
     published: true,
     created_at: '2026-09-14T16:45:00Z',
