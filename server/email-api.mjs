@@ -188,10 +188,28 @@ async function findBooking(reference) {
   return data;
 }
 
+async function getAdminRecipients() {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('email')
+    .in('role', ['admin', 'manager']);
+  if (error) throw new Error(`Could not load admin booking recipients: ${error.message}`);
+
+  const recipients = new Set(
+    (data || [])
+      .map((profile) => String(profile.email || '').trim().toLowerCase())
+      .filter(Boolean)
+  );
+  if (adminEmail) recipients.add(adminEmail.trim().toLowerCase());
+  if (!recipients.size) throw new Error('No admin booking email recipients are configured.');
+  return [...recipients];
+}
+
 async function sendBookingEmails(record) {
   const booking = record;
   const guest = booking.guests;
   const property = booking.properties;
+  const adminRecipients = await getAdminRecipients();
   const results = await Promise.allSettled([
     mailer.sendMail({
       from: { name: 'Rafiki Airbnbs', address: smtpUser },
@@ -200,7 +218,10 @@ async function sendBookingEmails(record) {
     }),
     mailer.sendMail({
       from: { name: 'Rafiki Airbnbs Bookings', address: smtpUser },
-      to: adminEmail,
+      to: smtpUser,
+      bcc: adminRecipients.filter(
+        (recipient) => recipient !== smtpUser.trim().toLowerCase()
+      ),
       ...bookingEmail(booking, property, guest, true),
     }),
   ]);

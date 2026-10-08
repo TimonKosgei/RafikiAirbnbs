@@ -90,7 +90,7 @@ The favicon and Open Graph/Twitter metadata already reference these filenames. A
 
 ## Booking email and recovery
 
-When a booking is created, the email API loads the saved booking from Supabase and sends a confirmation to the guest plus a separate copy to `ADMIN_BOOKING_EMAIL` (defaults to `SMTP_USER`). Guests can open `/booking`, enter their booking reference, or request matching booking details by email. Recovery responses do not reveal whether an address has a booking; details are delivered only to the submitted inbox.
+When a booking is created, the email API loads the saved booking from Supabase and sends a confirmation to the guest plus a separate blind-copy notice to every Supabase profile with the `admin` or `manager` role. `ADMIN_BOOKING_EMAIL` (defaults to `SMTP_USER`) is included as a fallback recipient. Add an Auth user and profile row for each staff member who should receive notices. Guests can open `/booking`, enter their booking reference, or request matching booking details by email. Recovery responses do not reveal whether an address has a booking; details are delivered only to the submitted inbox.
 
 For local development, the Vite server proxies email routes to the Node email API process. On Vercel, the `api/booking-notifications.js` and `api/booking-email-lookup.js` files deploy as Node.js Functions and invoke the same handlers; Vercel does not run `server/email-api.mjs` as a persistent server. Node.js Functions support Gmail SMTP on port 587 using STARTTLS.
 
