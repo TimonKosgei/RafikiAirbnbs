@@ -43,6 +43,7 @@ import {
 } from '../../lib/whatsapp';
 import { AVAILABLE_AMENITIES } from '../../lib/supabase/seed-data';
 import { ResilientImage } from '../../components/ui/ResilientImage';
+import { PropertyPhotosManager } from '../../components/admin/PropertyPhotosManager';
 
 type AdminTab =
   | 'dashboard'
@@ -949,6 +950,16 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
                     />
                   </div>
 
+                  {/* Photo & Gallery Upload Management */}
+                  <PropertyPhotosManager
+                    images={editingProperty.images || []}
+                    propertyId={editingProperty.id}
+                    propertyName={editingProperty.name || 'Residence'}
+                    onChange={(updatedImages) =>
+                      setEditingProperty({ ...editingProperty, images: updatedImages })
+                    }
+                  />
+
                   {/* Amenities checkboxes */}
                   <div className="space-y-2">
                     <label className="block text-xs font-semibold text-[#1A1D1B]">Amenities</label>
@@ -999,7 +1010,12 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
                 {properties.map((prop) => (
                   <div key={prop.id} className="rounded-xl bg-[#FBF9F5] border border-[#1A1D1B]/12 overflow-hidden p-5 space-y-3">
                     <div className="aspect-4/3 rounded-lg overflow-hidden bg-[#F2EFE9]">
-                      <ResilientImage src="" alt={prop.name} fallbackLabel={prop.name} className="w-full h-full object-cover" />
+                      <ResilientImage
+                        src={prop.images?.find((i) => i.is_cover)?.url || prop.images?.[0]?.url || ''}
+                        alt={prop.name}
+                        fallbackLabel={prop.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="flex items-center justify-between text-xs text-[#5C5F58]">
                       <span>{prop.location}, {prop.city}</span>
