@@ -108,7 +108,7 @@ export const PropertyDetailPage: React.FC<{ slug: string }> = ({ slug }) => {
           >
             <span>Explore our stays</span>
           </a>
-          <WhatsAppButton label="Chat with Rafiki Living" variant="outline" />
+          <WhatsAppButton label="Chat with Rafiki Airbnbs" variant="outline" />
         </div>
       </div>
     );
@@ -160,7 +160,10 @@ export const PropertyDetailPage: React.FC<{ slug: string }> = ({ slug }) => {
 
     setSubmitting(true);
     try {
-      const response = await apiFetch<{ booking: BookingRequest }>('/api/public/bookings', {
+      const response = await apiFetch<{
+        booking: BookingRequest;
+        emailNotificationFailed?: boolean;
+      }>('/api/public/bookings', {
         method: 'POST',
         body: JSON.stringify({
           property_id: property.id,
@@ -175,7 +178,11 @@ export const PropertyDetailPage: React.FC<{ slug: string }> = ({ slug }) => {
       });
 
       await refreshPublicData();
-      navigate(`/booking/${response.booking.reference_number}`);
+      navigate(
+        `/booking/${response.booking.reference_number}${
+          response.emailNotificationFailed ? '?emailNotificationFailed=1' : ''
+        }`
+      );
     } catch (err) {
       setSubmitError(
         err instanceof Error

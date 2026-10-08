@@ -43,7 +43,7 @@ const RouterViewport: React.FC = () => {
   } else if (cleanPath === '/contact') {
     pageContent = <ContactPage />;
   } else if (cleanPath === '/booking') {
-    pageContent = <BookingConfirmationPage bookingIdOrRef="RFL-2026-0012" />;
+    pageContent = <BookingConfirmationPage bookingIdOrRef="" />;
   } else if (cleanPath.startsWith('/booking/')) {
     const idOrRef = decodeURIComponent(cleanPath.slice('/booking/'.length).split('/')[0]);
     pageContent = <BookingConfirmationPage bookingIdOrRef={idOrRef} />;

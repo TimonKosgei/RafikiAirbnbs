@@ -9,6 +9,7 @@ import {
 } from './seed-data';
 import { findConflictingConfirmedBookings, validateBookingDates } from '../bookings/validation';
 import { normalizeWhatsAppNumber } from '../whatsapp';
+import { supabaseApiFetch } from './database';
 
 const supabaseUrl =
   (import.meta as unknown as { env: Record<string, string> }).env?.VITE_SUPABASE_URL ||
@@ -37,6 +38,7 @@ export function setAdminToken(token: string | null): void {
     window.localStorage.setItem(ADMIN_TOKEN_KEY, token);
   } else {
     window.localStorage.removeItem(ADMIN_TOKEN_KEY);
+    if (supabaseBrowserClient) void supabaseBrowserClient.auth.signOut();
   }
 }
 
@@ -138,6 +140,10 @@ export async function apiFetch<T>(
     }
   }
 
+  if (supabaseBrowserClient) {
+    return supabaseApiFetch<T>(endpoint, method, body, includeAdminAuth);
+  }
+
   const store = getLocalStore();
   recalculateRatings(store);
 
@@ -165,6 +171,10 @@ export async function apiFetch<T>(
         supabase_configured: Boolean(supabaseBrowserClient),
       },
     } as T;
+  }
+
+  if (endpoint === '/api/public/bookings/lookup-by-email' && method === 'POST') {
+    throw new Error('Email booking recovery requires a connected Supabase database and email service.');
   }
 
   // 2. /api/public/stays/:slug
@@ -304,21 +314,7 @@ export async function apiFetch<T>(
 
   // 5. Admin Login
   if (endpoint === '/api/admin/login' && method === 'POST') {
-    const { email, password } = body;
-    const adminEmail = 'admin@rafikiliving.com';
-    const adminPassword = 'RafikiAdmin2026!';
-
-    if (
-      String(email).trim().toLowerCase() === adminEmail &&
-      String(password) === adminPassword
-    ) {
-      const token = `token-${Date.now()}`;
-      return {
-        token,
-        admin: { email: adminEmail, name: 'Rafiki Living Admin' },
-      } as T;
-    }
-    throw new Error('Invalid admin credentials. Please verify your email and password.');
+    throw new Error('Admin sign-in requires Supabase configuration.');
   }
 
   // 6. Admin Overview

@@ -91,29 +91,29 @@ export const RafikiProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     const path = locationState.pathname;
-    let pageTitle = 'Rafiki Living | Feel at Home in Kenya';
-    let pageDescription = 'Discover beautifully curated short-stay homes in Kenya with Rafiki Living.';
+    let pageTitle = 'Rafiki Airbnbs | Feel at Home in Kenya';
+    let pageDescription = 'Discover beautifully curated short-stay homes in Kenya with Rafiki Airbnbs.';
 
     if (path === '/stays') {
-      pageTitle = 'Curated Stays in Nairobi | Rafiki Living';
+      pageTitle = 'Curated Stays in Nairobi | Rafiki Airbnbs';
       pageDescription = 'Browse handpicked short-stay apartments and garden residences in Kilimani, Kileleshwa, and Westlands, Nairobi.';
     } else if (path.startsWith('/stays/')) {
       const slug = path.replace('/stays/', '').split('/')[0];
       const prop = properties.find((p) => p.slug === slug);
       if (prop) {
-        pageTitle = `${prop.name} | Rafiki Living`;
-        pageDescription = `${prop.name} in ${prop.location}, ${prop.city}. Book directly with Rafiki Living.`;
+        pageTitle = `${prop.name} | Rafiki Airbnbs`;
+        pageDescription = `${prop.name} in ${prop.location}, ${prop.city}. Book directly with Rafiki Airbnbs.`;
       }
     } else if (path === '/destinations') {
-      pageTitle = 'Destinations in Kenya | Rafiki Living';
+      pageTitle = 'Destinations in Kenya | Rafiki Airbnbs';
     } else if (path === '/about') {
-      pageTitle = 'Our Story & Hospitality | Rafiki Living';
+      pageTitle = 'Our Story & Hospitality | Rafiki Airbnbs';
     } else if (path === '/contact') {
-      pageTitle = 'Contact Us on WhatsApp or Phone | Rafiki Living';
+      pageTitle = 'Contact Us on WhatsApp or Phone | Rafiki Airbnbs';
     } else if (path.startsWith('/booking/')) {
-      pageTitle = 'Booking Request Status | Rafiki Living';
+      pageTitle = 'Booking Request Status | Rafiki Airbnbs';
     } else if (path.startsWith('/admin')) {
-      pageTitle = 'Admin Hospitality Console | Rafiki Living';
+      pageTitle = 'Admin Hospitality Console | Rafiki Airbnbs';
     }
 
     document.title = pageTitle;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CheckCircle2, Clock, Search, XCircle } from 'lucide-react';
+import { CheckCircle2, Clock, Mail, Search, XCircle } from 'lucide-react';
 import { BookingRequest } from '../types';
 import { apiFetch } from '../lib/supabase/client';
 import { WhatsAppButton, PhoneCallButton } from '../components/ui/ContactButtons';
@@ -24,11 +24,15 @@ interface PublicBookingLookupResponse {
 export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
   bookingIdOrRef,
 }) => {
-  const { navigate } = useRafiki();
+  const { navigate, searchParams } = useRafiki();
   const [data, setData] = useState<PublicBookingLookupResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lookupInput, setLookupInput] = useState(bookingIdOrRef || '');
+  const [emailInput, setEmailInput] = useState('');
+  const [emailLookupLoading, setEmailLookupLoading] = useState(false);
+  const [emailLookupMessage, setEmailLookupMessage] = useState<string | null>(null);
+  const [emailLookupError, setEmailLookupError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -69,6 +73,29 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
     navigate(`/booking/${encodeURIComponent(lookupInput.trim())}`);
   };
 
+  const handleEmailLookup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailLookupMessage(null);
+    setEmailLookupError(null);
+    setEmailLookupLoading(true);
+    try {
+      const response = await apiFetch<{ message: string }>(
+        '/api/public/bookings/lookup-by-email',
+        {
+          method: 'POST',
+          body: JSON.stringify({ email: emailInput }),
+        }
+      );
+      setEmailLookupMessage(response.message);
+    } catch (err) {
+      setEmailLookupError(
+        err instanceof Error ? err.message : 'Could not send booking recovery email.'
+      );
+    } finally {
+      setEmailLookupLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-20 space-y-6">
@@ -103,7 +130,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
     confirmed: {
       title: 'Booking Confirmed',
       subtitle:
-        'Your stay with Rafiki Living is confirmed and your dates are reserved exclusively for you.',
+        'Your stay with Rafiki Airbnbs is confirmed and your dates are reserved exclusively for you.',
       tone: 'text-[#15803D]',
       Icon: CheckCircle2,
     },
@@ -116,7 +143,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
     },
     completed: {
       title: 'Stay Completed',
-      subtitle: 'Thank you for staying with Rafiki Living. Karibu tena!',
+      subtitle: 'Thank you for staying with Rafiki Airbnbs. Karibu tena!',
       tone: 'text-[#2C4C3E]',
       Icon: CheckCircle2,
     },
@@ -149,18 +176,24 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
       {error || !booking ? (
         <div className="rounded-xl bg-[#F2EFE9] border border-[#1A1D1B]/10 p-8 sm:p-10 text-center space-y-5">
           <h1 className="font-serif text-3xl font-semibold text-[#1A1D1B]">
-            Booking Request Not Found
+            {bookingIdOrRef ? 'Booking Request Not Found' : 'Find Your Booking'}
           </h1>
           <p className="text-sm text-[#4A4E48] max-w-md mx-auto">
-            {error || 'Please check your reference code or contact our team directly on WhatsApp.'}
+            {error || 'Enter your booking reference above or request your booking details by email.'}
           </p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <WhatsAppButton label="Chat on WhatsApp" variant="primary" />
-            <PhoneCallButton label="Call Rafiki Living" variant="outline" />
+            <PhoneCallButton label="Call Rafiki Airbnbs" variant="outline" />
           </div>
         </div>
       ) : (
         <div className="rounded-2xl bg-[#FBF9F5] border border-[#1A1D1B]/12 overflow-hidden shadow-xs">
+          {searchParams.get('emailNotificationFailed') === '1' && (
+            <div className="m-6 sm:m-8 mb-0 rounded-lg border border-[#B45309]/30 bg-[#FFFBEB] p-4 text-sm text-[#92400E]">
+              Your booking was saved, but we could not send the confirmation emails. Save the
+              reference shown below and contact Rafiki Airbnbs if you need help.
+            </div>
+          )}
           <div className="bg-[#F2EFE9] border-b border-[#1A1D1B]/10 p-6 sm:p-8 space-y-3">
             {currentStatus && (
               <div className={`inline-flex items-center gap-2 text-xs font-semibold ${currentStatus.tone}`}>
@@ -239,7 +272,7 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
                   )}
                 />
                 <PhoneCallButton
-                  label="Call Rafiki Living"
+                  label="Call Rafiki Airbnbs"
                   showNumber
                   variant="outline"
                   size="lg"
@@ -249,6 +282,44 @@ export const BookingConfirmationPage: React.FC<{ bookingIdOrRef: string }> = ({
           </div>
         </div>
       )}
+
+      <form
+        onSubmit={handleEmailLookup}
+        className="rounded-xl bg-[#FBF9F5] border border-[#1A1D1B]/12 p-5 sm:p-6 space-y-3"
+      >
+        <div className="flex items-center gap-2">
+          <Mail className="w-4 h-4 text-[#2C4C3E]" />
+          <h2 className="text-sm font-semibold text-[#1A1D1B]">Lost your booking reference?</h2>
+        </div>
+        <p className="text-xs text-[#5C5F58]">
+          Enter the email address used for your booking. We’ll send any matching booking details
+          to that inbox.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <input
+            type="email"
+            required
+            autoComplete="email"
+            value={emailInput}
+            onChange={(event) => setEmailInput(event.target.value)}
+            placeholder="Email used for the booking"
+            className="flex-1 h-10 rounded-lg border border-[#1A1D1B]/15 bg-white px-3 text-sm focus:border-[#2C4C3E] focus:outline-none"
+          />
+          <button
+            type="submit"
+            disabled={emailLookupLoading}
+            className="h-10 px-4 rounded-lg bg-[#2C4C3E] text-white text-xs font-semibold hover:bg-[#223B30] disabled:opacity-50 transition-colors cursor-pointer"
+          >
+            {emailLookupLoading ? 'Sending...' : 'Email my bookings'}
+          </button>
+        </div>
+        {emailLookupMessage && (
+          <p role="status" className="text-xs text-[#166534]">{emailLookupMessage}</p>
+        )}
+        {emailLookupError && (
+          <p role="alert" className="text-xs text-[#991B1B]">{emailLookupError}</p>
+        )}
+      </form>
     </div>
   );
 };

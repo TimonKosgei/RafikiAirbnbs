@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               onClick={(e) => handleLink(e, '/')}
               className="font-serif text-3xl font-semibold tracking-tight text-[#FBF9F5] inline-block"
             >
-              Rafiki Living
+              Rafiki Airbnbs
             </a>
             <p className="text-sm text-[#D6D3CD] max-w-sm leading-relaxed tracking-wide">
               &ldquo;Rafiki&rdquo; means friend in Swahili. We offer a small, thoughtfully managed
@@ -106,8 +106,8 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="/booking/RFL-2026-0012"
-                  onClick={(e) => handleLink(e, '/booking/RFL-2026-0012')}
+                  href="/booking"
+                  onClick={(e) => handleLink(e, '/booking')}
                   className="hover:text-white transition-colors"
                 >
                   Booking Lookup
@@ -162,7 +162,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#9E9B95]">
-          <p>© {new Date().getFullYear()} Rafiki Living Limited. Nairobi, Kenya. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Rafiki Airbnbs. Nairobi, Kenya. All rights reserved.</p>
           <p>Personal WhatsApp &amp; phone confirmation for every stay.</p>
         </div>
       </div>

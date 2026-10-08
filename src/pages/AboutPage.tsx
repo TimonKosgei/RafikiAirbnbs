@@ -13,13 +13,13 @@ export const AboutPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6 space-y-6">
           <p className="text-xs font-medium text-[#2C4C3E]">
-            Our Story · Karibu Rafiki Living
+            Our Story · Karibu Rafiki Airbnbs
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-[54px] font-semibold text-[#1A1D1B] leading-[1.1] tracking-tight">
             &ldquo;Rafiki&rdquo; means friend in Swahili.
           </h1>
           <p className="text-base sm:text-lg text-[#363935] leading-relaxed">
-            Rafiki Living was founded with a simple conviction: arriving in Kenya—whether for a
+            Rafiki Airbnbs was founded with a simple conviction: arriving in Kenya—whether for a
             once-in-a-lifetime safari, an international relocation, or a week of executive
             meetings—should feel like being welcomed into the home of a trusted local friend.
           </p>

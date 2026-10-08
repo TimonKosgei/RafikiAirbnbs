@@ -48,7 +48,7 @@ export const HomePage: React.FC = () => {
               <ResilientImage
                 src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85"
                 alt="Sunlit luxury living room at Rafiki Heights in Kilimani, Nairobi"
-                fallbackLabel="Rafiki Living · Kenya"
+                fallbackLabel="Rafiki Airbnbs · Kenya"
                 priority
                 className="w-full h-full object-cover"
               />
@@ -61,11 +61,11 @@ export const HomePage: React.FC = () => {
               </p>
 
               <h1 className="font-serif text-4xl sm:text-6xl lg:text-[64px] font-semibold text-white leading-[1.08] tracking-tight">
-                Feel at home in Kenya.
+                Where Every Stay Feels Like Home.
               </h1>
 
               <p className="text-base sm:text-lg text-[#EAE6DF] leading-relaxed max-w-xl">
-                Beautifully curated stays. Local hospitality. Unforgettable experiences.
+                Beautifully curated stays. The best hospitality. Unforgettable experiences.
               </p>
 
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
@@ -144,7 +144,7 @@ export const HomePage: React.FC = () => {
                 Nairobi’s most welcoming neighborhoods
               </h2>
               <p className="text-base text-[#5C5F58]">
-                Every Rafiki Living home is chosen for walkable greenery, 24-hour security, and
+                Every home in the Rafiki Airbnbs collection is chosen for walkable greenery, 24-hour security, and
                 proximity to Nairobi’s dining, diplomatic, and safari links.
               </p>
             </div>
@@ -218,7 +218,7 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-3">
               <p className="text-xs font-medium text-[#2C4C3E]">
-                Why Guests Choose Rafiki Living
+                Why Guests Choose Rafiki Airbnbs
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1A1D1B] tracking-tight">
                 Personal Kenyan hospitality, not an anonymous lockbox.

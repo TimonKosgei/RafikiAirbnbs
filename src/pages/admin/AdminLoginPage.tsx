@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowLeft, KeyRound, Lock } from 'lucide-react';
+import { ArrowLeft, Lock } from 'lucide-react';
 import { useRafiki } from '../../context/RafikiContext';
 import { apiFetch, setAdminToken } from '../../lib/supabase/client';
 
 export const AdminLoginPage: React.FC = () => {
   const { navigate } = useRafiki();
-  const [email, setEmail] = useState('admin@rafikiliving.com');
-  const [password, setPassword] = useState('RafikiAdmin2026!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,7 +52,7 @@ export const AdminLoginPage: React.FC = () => {
 
         <div className="space-y-2">
           <p className="text-xs font-semibold text-[#2C4C3E]">
-            Rafiki Living · Hospitality Management
+            Rafiki Airbnbs · Hospitality Management
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1A1D1B]">
             Admin Sign In
@@ -76,6 +76,7 @@ export const AdminLoginPage: React.FC = () => {
                 type="email"
                 required
                 autoComplete="email"
+                placeholder="admin@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-11 px-3.5 rounded-lg bg-[#FBF9F5] border border-[#1A1D1B]/15 text-sm text-[#1A1D1B] focus:border-[#2C4C3E] focus:outline-none"
@@ -116,27 +117,9 @@ export const AdminLoginPage: React.FC = () => {
             </button>
           </form>
 
-          <div className="pt-4 border-t border-[#1A1D1B]/10 space-y-2 text-xs text-[#5C5F58]">
-            <div className="flex items-center justify-between">
-              <span className="font-semibold text-[#1A1D1B] inline-flex items-center gap-1.5">
-                <KeyRound className="w-3.5 h-3.5 text-[#2C4C3E]" />
-                Default Admin Credentials
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setEmail('admin@rafikiliving.com');
-                  setPassword('RafikiAdmin2026!');
-                }}
-                className="text-[#2C4C3E] font-semibold hover:underline cursor-pointer"
-              >
-                Auto-fill
-              </button>
-            </div>
-            <p className="font-mono-num">
-              Email: admin@rafikiliving.com · Password: RafikiAdmin2026!
-            </p>
-          </div>
+          <p className="pt-4 border-t border-[#1A1D1B]/10 text-xs text-[#5C5F58]">
+            Sign in with an administrator account created in your Supabase project.
+          </p>
         </div>
       </div>
     </div>

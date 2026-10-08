@@ -1,6 +1,5 @@
 /**
- * Utility to process, resize, and convert user-uploaded image files into optimized Data URLs.
- * Automatically keeps file sizes manageable for localStorage and fast rendering.
+ * Resize uploaded images and encode them as data URLs before sending them to Supabase Storage.
  */
 
 export interface ProcessedImageResult {

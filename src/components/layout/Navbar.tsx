@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
           onClick={(e) => handleNav(e, '/')}
           className="font-serif text-2xl sm:text-[28px] font-semibold tracking-tight text-[#1A1D1B] whitespace-nowrap shrink-0"
         >
-          Rafiki Living
+          Rafiki Airbnbs
         </a>
 
         <nav
@@ -104,7 +104,7 @@ export const Navbar: React.FC = () => {
           </nav>
           <div className="pt-2 border-t border-[#1A1D1B]/8">
             <WhatsAppButton
-              label="Chat with Rafiki Living"
+              label="Chat with Rafiki Airbnbs"
               size="md"
               variant="primary"
               className="w-full"

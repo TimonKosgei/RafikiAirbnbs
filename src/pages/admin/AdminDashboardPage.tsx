@@ -348,7 +348,7 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
   if (loading) {
     return (
       <div className="min-h-screen bg-[#FBF9F5] p-8 flex items-center justify-center">
-        <p className="text-sm text-[#5C5F58]">Loading Rafiki Living Admin Console...</p>
+        <p className="text-sm text-[#5C5F58]">Loading Rafiki Airbnbs Admin Console...</p>
       </div>
     );
   }
@@ -386,7 +386,7 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
               }}
               className="font-serif text-2xl font-semibold tracking-tight text-white"
             >
-              Rafiki Living
+              Rafiki Airbnbs
             </a>
             <span className="text-[11px] font-mono-num text-[#B89758]">Admin</span>
           </div>
@@ -448,7 +448,7 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
       <div className="flex-1 flex flex-col min-w-0">
         <header className="h-16 px-6 border-b border-[#1A1D1B]/10 bg-[#FBF9F5] flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs text-[#5C5F58]">
-            <span>Rafiki Living</span>
+            <span>Rafiki Airbnbs</span>
             <span>/</span>
             <strong className="text-[#1A1D1B] capitalize">{activeTab}</strong>
           </div>
@@ -721,7 +721,7 @@ export const AdminDashboardPage: React.FC<{ initialSubRoute?: string }> = ({
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="font-serif text-3xl font-semibold text-[#1A1D1B]">Properties Management</h1>
-                  <p className="text-sm text-[#5C5F58]">Create, edit, publish, and manage Rafiki Living homes.</p>
+                  <p className="text-sm text-[#5C5F58]">Create, edit, publish, and manage your stays.</p>
                 </div>
                 {!editingProperty && (
                   <button
