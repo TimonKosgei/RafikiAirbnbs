@@ -92,7 +92,25 @@ The favicon and Open Graph/Twitter metadata already reference these filenames. A
 
 When a booking is created, the email API loads the saved booking from Supabase and sends a confirmation to the guest plus a separate copy to `ADMIN_BOOKING_EMAIL` (defaults to `SMTP_USER`). Guests can open `/booking`, enter their booking reference, or request matching booking details by email. Recovery responses do not reveal whether an address has a booking; details are delivered only to the submitted inbox.
 
-The email API must run as a server-side Node process with `SUPABASE_SERVICE_ROLE_KEY`, `SMTP_USER`, and `SMTP_APP_PASSWORD` configured as private environment variables. The Vite development server proxies the email routes to this process. For production, deploy the Node email API privately (set `EMAIL_API_HOST=0.0.0.0` only inside its isolated server/container) and configure the hosting platform's reverse proxy to route `/api/booking-notifications` and `/api/booking-email-lookup` to it. Do not expose the service-role key or Gmail app password to the frontend.
+For local development, the Vite server proxies email routes to the Node email API process. On Vercel, the `api/booking-notifications.js` and `api/booking-email-lookup.js` files deploy as Node.js Functions and invoke the same handlers; Vercel does not run `server/email-api.mjs` as a persistent server. Node.js Functions support Gmail SMTP on port 587 using STARTTLS.
+
+In Vercel Project Settings:
+
+1. Set **Framework Preset** to `Vite`.
+2. Set **Build Command** to `npm run build` (equivalent to `vite build`).
+3. Set **Output Directory** to `dist`.
+4. Add these environment variables for Production (and Preview too, if needed):
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `SMTP_USER`
+   - `SMTP_APP_PASSWORD`
+   - `SMTP_PORT` = `587`
+   - `ADMIN_BOOKING_EMAIL`
+5. Redeploy after saving the variables.
+
+Keep `SUPABASE_SERVICE_ROLE_KEY` and `SMTP_APP_PASSWORD` server-only: never prefix them with `VITE_`. The Supabase URL and anon key are intended for browser use.
 
 ---
 

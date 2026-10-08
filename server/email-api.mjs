@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import { createServer } from 'node:http';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
 
@@ -61,6 +63,8 @@ function requireServices() {
 }
 
 async function readJson(request) {
+  if (request.body && typeof request.body === 'object') return request.body;
+  if (typeof request.body === 'string') return JSON.parse(request.body || '{}');
   const chunks = [];
   let size = 0;
   for await (const chunk of request) {
@@ -73,7 +77,11 @@ async function readJson(request) {
 
 function allowRequest(request, bucket, maxRequests, windowMs) {
   const now = Date.now();
-  const clientAddress = request.socket.remoteAddress || 'unknown';
+  const forwardedFor = request.headers['x-forwarded-for'];
+  const clientAddress =
+    (Array.isArray(forwardedFor) ? forwardedFor[0] : forwardedFor)?.split(',')[0].trim() ||
+    request.socket?.remoteAddress ||
+    'unknown';
   const key = `${bucket}:${clientAddress}`;
   const timestamps = (requestLimits.get(key) || []).filter(
     (timestamp) => now - timestamp < windowMs
@@ -275,17 +283,17 @@ async function sendEmailLookup(request, response) {
   });
 }
 
-const server = createServer(async (request, response) => {
+export async function handleEmailApiRequest(request, response, route) {
   try {
-    if (request.method === 'GET' && request.url === '/api/email-health') {
+    if (request.method === 'GET' && route === '/api/email-health') {
       return json(response, 200, {
         configured: Boolean(supabase && mailer && adminEmail),
       });
     }
-    if (request.method === 'POST' && request.url === '/api/booking-notifications') {
+    if (request.method === 'POST' && route === '/api/booking-notifications') {
       return await sendBookingNotification(request, response);
     }
-    if (request.method === 'POST' && request.url === '/api/booking-email-lookup') {
+    if (request.method === 'POST' && route === '/api/booking-email-lookup') {
       return await sendEmailLookup(request, response);
     }
     return json(response, 404, { error: 'Not found.' });
@@ -295,8 +303,14 @@ const server = createServer(async (request, response) => {
       error: 'The email service could not complete this request. Please contact Rafiki Airbnbs.',
     });
   }
-});
+}
 
-server.listen(port, host, () => {
-  console.log(`Booking email API listening on http://${host}:${port}`);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  const server = createServer((request, response) =>
+    handleEmailApiRequest(request, response, new URL(request.url, 'http://localhost').pathname)
+  );
+
+  server.listen(port, host, () => {
+    console.log(`Booking email API listening on http://${host}:${port}`);
+  });
+}
