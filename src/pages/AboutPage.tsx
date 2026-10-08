@@ -13,15 +13,14 @@ export const AboutPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6 space-y-6">
           <p className="text-xs font-medium text-[#2C4C3E]">
-            Our Story · Karibu MIS Stays
+            Our Story · Karibu
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-[54px] font-semibold text-[#1A1D1B] leading-[1.1] tracking-tight">
-            &ldquo;Rafiki&rdquo; means friend in Swahili.
+            Where Every Stay Feels Like Home.
           </h1>
           <p className="text-base sm:text-lg text-[#363935] leading-relaxed">
-            MIS Stays was founded with a simple conviction: arriving in Kenya—whether for a
-            once-in-a-lifetime safari, an international relocation, or a week of executive
-            meetings—should feel like being welcomed into the home of a trusted local friend.
+            MIS Stays was founded on a simple idea: arriving in Kenya—whether for a safari, a new
+            chapter abroad, or a week of work—should feel welcoming, comfortable, and personal.
           </p>
           <p className="text-sm sm:text-base text-[#4A4E48] leading-relaxed">
             Rather than operating hundreds of anonymous listings, we curate a deliberately intimate
